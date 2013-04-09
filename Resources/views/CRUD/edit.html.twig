@@ -1,0 +1,18 @@
+{% extends 'SonataAdminBundle:CRUD:edit.html.twig' %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="/bundles/category/css/categorias/associate/jquery.treeview.css" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script src="/bundles/category/js/categorias/associate/jquery.treeview.js"></script>
+  <script src="/bundles/category/js/categorias/associate/jquery.treeview.edit.js"></script>
+  <script src="/bundles/category/js/categorias/associate/jquery.treeview.async.js"></script>
+{% endblock %}
+
+{% block footer %}
+  {{ parent() }}  
+  {{ tinymce_init() }}
+{% endblock %}

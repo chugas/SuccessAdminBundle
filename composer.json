@@ -1,0 +1,20 @@
+{
+    "name": "success/admin-bundle",
+    "description": "A Bundle for custom sonata admin management",
+    "keywords": ["bundle", "admin", "success"],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "homepage": "https://github.com/chugas/SuccessAdminBundle",
+    "authors": [
+        {
+            "name": "Gaston Caldeiro"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+    },
+    "autoload": {
+        "psr-0": { "Success\\AdminBundle": "" }
+    },
+    "target-dir": "Success/AdminBundle"
+}
