@@ -1,7 +1,37 @@
 parameters:
-#    admin.example.class: Application\Success\AdminBundle\Example
+    admin.user.class: Application\Success\AdminBundle\Admin\UserAdmin
+    entity.user.class: Application\Success\AdminBundle\Entity\User
+    admin.group.class: Application\Success\AdminBundle\Admin\GroupAdmin
+    entity.group.class: Application\Success\AdminBundle\Entity\Group    
+    form.type.security_roles.class: Application\Success\AdminBundle\Form\Type\SecurityRolesType
+
 
 services:
 #    admin.example:
 #        class: %admin.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+    success.admin.user:
+        class: %admin.user.class%
+        tags:
+          - { name: sonata.admin, manager_type: orm, group: 'Users', label: Usuarios2 }
+        arguments:
+            - null
+            - %entity.user.class%
+            - SuccessAdminBundle:User
+            
+    success.admin.group:
+        class: %admin.group.class%
+        tags:
+          - { name: sonata.admin, manager_type: orm, group: 'Users', label: Grupos2 }
+        arguments:
+            - null
+            - %entity.group.class%
+            - SuccessAdminBundle:Group
+            
+    success.user.form.type.security_roles:
+        class: %form.type.security_roles.class%
+        tags:
+          - { name: form.type, alias: success_security_roles }
+        arguments: 
+            - @sonata.admin.pool           
+            

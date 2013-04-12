@@ -9,6 +9,6 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
-      return new RedirectResponse($this->container->get('router')->generate('sonata_user_admin_security_login'));
+      return new RedirectResponse($this->container->get('router')->generate('fos_user_security_login'));
     }
 }
