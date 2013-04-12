@@ -13,7 +13,7 @@ services:
     success.admin.user:
         class: %admin.user.class%
         tags:
-          - { name: sonata.admin, manager_type: orm, group: 'Users', label: Usuarios2 }
+          - { name: sonata.admin, manager_type: orm, group: 'Usuarios', label: Usuarios }
         arguments:
             - null
             - %entity.user.class%
@@ -22,7 +22,7 @@ services:
     success.admin.group:
         class: %admin.group.class%
         tags:
-          - { name: sonata.admin, manager_type: orm, group: 'Users', label: Grupos2 }
+          - { name: sonata.admin, manager_type: orm, group: 'Usuarios', label: Grupos }
         arguments:
             - null
             - %entity.group.class%
