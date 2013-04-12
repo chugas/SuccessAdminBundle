@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Entity\Group as BaseGroup;
 
 /**
- * @ORM\Entity(repositoryClass="Application\Success\AdminBundle\Entity\Repository\GroupRepository")
+ * @ORM\Entity(repositoryClass="Success\AdminBundle\Entity\Repository\GroupRepository")
  * @ORM\Table(name="success_group")
  */
 class Group extends BaseGroup

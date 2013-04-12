@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * User entity
  *
- * @ORM\Entity(repositoryClass="Application\Success\AdminBundle\Entity\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="Success\AdminBundle\Entity\Repository\UserRepository")
  * @ORM\Table(name="success_users")
  */
 class User extends BaseUser
@@ -23,7 +23,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Application\Success\AdminBundle\Entity\Group")
+     * @ORM\ManyToMany(targetEntity="Success\AdminBundle\Entity\Group")
      * @ORM\JoinTable(name="success_users_groups",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
