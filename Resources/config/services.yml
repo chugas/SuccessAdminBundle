@@ -1,9 +1,9 @@
 parameters:
-    admin.user.class: Application\Success\AdminBundle\Admin\UserAdmin
-    entity.user.class: Application\Success\AdminBundle\Entity\User
-    admin.group.class: Application\Success\AdminBundle\Admin\GroupAdmin
-    entity.group.class: Application\Success\AdminBundle\Entity\Group    
-    form.type.security_roles.class: Application\Success\AdminBundle\Form\Type\SecurityRolesType
+    admin.user.class: Success\AdminBundle\Admin\UserAdmin
+    entity.user.class: Success\AdminBundle\Entity\User
+    admin.group.class: Success\AdminBundle\Admin\GroupAdmin
+    entity.group.class: Success\AdminBundle\Entity\Group    
+    form.type.security_roles.class: Success\AdminBundle\Form\Type\SecurityRolesType
 
 
 services:
