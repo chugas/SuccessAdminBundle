@@ -1,6 +1,7 @@
+USUARIO
 <?php
 
-namespace Success\AdminBundle\Entity;
+namespace Application\Success\UsuarioBundle\Entity;
 
 use FOS\UserBundle\Entity\User as BaseUser;
 
@@ -10,7 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * User entity
  *
- * @ORM\Entity(repositoryClass="Success\AdminBundle\Entity\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="Application\Success\UsuarioBundle\Entity\Repository\UserRepository")
  * @ORM\Table(name="success_users")
  */
 class User extends BaseUser
@@ -23,7 +24,7 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Success\AdminBundle\Entity\Group")
+     * @ORM\ManyToMany(targetEntity="Application\Success\UsuarioBundle\Entity\Group")
      * @ORM\JoinTable(name="success_users_groups",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
@@ -89,5 +90,69 @@ class User extends BaseUser
     {
         return $this->groups;
     }
+
+}
+
+REPOSITORIO DE USUARIO:
+<?php
+
+namespace Application\Success\UsuarioBundle\Entity\Repository;
+
+use Doctrine\ORM\EntityRepository;
+
+/**
+ * UserRepository
+ */
+class UserRepository extends EntityRepository
+{
+
+}
+
+
+------------------------------------------------------------------------------------------
+GRUPO
+<?php
+
+namespace Application\Success\UsuarioBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Entity\Group as BaseGroup;
+
+/**
+ * @ORM\Entity(repositoryClass="Application\Success\UsuarioBundle\Entity\Repository\GroupRepository")
+ * @ORM\Table(name="success_group")
+ */
+class Group extends BaseGroup
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * Get id
+     *
+     * @return integer $id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}
+
+REPOSITORIO DE GRUPO:
+<?php
+
+namespace Application\Success\UsuarioBundle\Entity\Repository;
+
+use Doctrine\ORM\EntityRepository;
+
+/**
+ * GroupRepository
+ */
+class GroupRepository extends EntityRepository
+{
 
 }

@@ -24,5 +24,13 @@ class SuccessAdminExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+        
+        $container->setParameter('success_admin.user_admin', $config['user_admin']);
+        $container->setParameter('success_admin.user_model', $config['user_model']);        
+        $container->setParameter('success_admin.user_controller', $config['user_controller']);
+        
+        $container->setParameter('success_admin.group_admin', $config['group_admin']);
+        $container->setParameter('success_admin.group_model', $config['group_model']);        
+        $container->setParameter('success_admin.group_controller', $config['group_controller']);        
     }
 }

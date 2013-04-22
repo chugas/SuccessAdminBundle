@@ -1,8 +1,12 @@
 parameters:
-    admin.user.class: Success\AdminBundle\Admin\UserAdmin
-    entity.user.class: Success\AdminBundle\Entity\User
-    admin.group.class: Success\AdminBundle\Admin\GroupAdmin
-    entity.group.class: Success\AdminBundle\Entity\Group    
+    admin.user.class: %success_admin.user_admin%
+    entity.user.class: %success_admin.user_model%
+    controller.user.class: %success_admin.user_controller%
+    
+    admin.group.class: %success_admin.group_admin%
+    entity.group.class: %success_admin.group_model%
+    controller.group.class: %success_admin.group_controller%    
+    
     form.type.security_roles.class: Success\AdminBundle\Form\Type\SecurityRolesType
 
 
@@ -17,7 +21,7 @@ services:
         arguments:
             - null
             - %entity.user.class%
-            - SuccessAdminBundle:User
+            - %controller.user.class%
             
     success.admin.group:
         class: %admin.group.class%
@@ -26,12 +30,11 @@ services:
         arguments:
             - null
             - %entity.group.class%
-            - SuccessAdminBundle:Group
+            - %controller.group.class%
             
     success.user.form.type.security_roles:
         class: %form.type.security_roles.class%
         tags:
           - { name: form.type, alias: success_security_roles }
         arguments: 
-            - @sonata.admin.pool           
-            
+            - @sonata.admin.pool

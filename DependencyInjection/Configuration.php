@@ -18,11 +18,37 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('admin');
+        $rootNode = $treeBuilder->root('success_admin');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            //->addDefaultsIfNotSet()
+            ->children()
+              ->scalarNode('user_model')
+                  ->isRequired()
+                  ->cannotBeEmpty()
+              ->end()
+              ->scalarNode('user_admin')
+                  ->isRequired()
+                  ->cannotBeEmpty()
+              ->end()
+              ->scalarNode('user_controller')
+                  ->isRequired()
+                  ->cannotBeEmpty()
+              ->end()
+              ->scalarNode('group_model')
+                  ->isRequired()
+                  ->cannotBeEmpty()
+              ->end()
+              ->scalarNode('group_admin')
+                  ->isRequired()
+                  ->cannotBeEmpty()
+              ->end()
+              ->scalarNode('group_controller')
+                  ->isRequired()
+                  ->cannotBeEmpty()
+              ->end()                
+            ->end()
+        ;
 
         return $treeBuilder;
     }

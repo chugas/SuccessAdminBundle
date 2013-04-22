@@ -25,7 +25,7 @@ class GroupAdmin extends Admin {
   protected function configureFormFields(FormMapper $formMapper) {
     $formMapper
               ->add('name')
-              ->add('roles', 'sonata_security_roles', array(
+              ->add('roles', 'success_security_roles', array(
                   'expanded' => true,
                   'multiple' => true,
                   'required' => false
