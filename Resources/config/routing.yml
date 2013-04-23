@@ -1,3 +1,15 @@
 custom_admin_homepage:
     pattern: /
-    defaults: { _controller: SuccessAdminBundle:Default:index }
+    defaults: { _controller: SuccessAdminBundle:Security:index }
+
+usuario_admin_login:
+    pattern:   /login
+    defaults:  { _controller: SuccessAdminBundle:Security:login }
+
+# Ruta para la acción que comprueba el login del admin
+usuario_admin_login_check:
+    pattern:   /login_check
+
+# Ruta para la acción de logout de los usuarios del admin
+usuario_admin_logout:
+    pattern:   /logout

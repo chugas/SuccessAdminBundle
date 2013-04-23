@@ -17,6 +17,15 @@ use Symfony\Component\HttpFoundation\Session;
  */
 class SecurityController extends BaseController
 {
+    public function indexAction()
+    {
+      $user = $this->get('security.context')->getToken()->getUser();
+      if($user){
+        return new RedirectResponse($this->container->get('router')->generate('sonata_admin_dashboard'));        
+      }else{
+        return new RedirectResponse($this->container->get('router')->generate('usuario_admin_login'));        
+      }
+    }
 
     /**
      * Handle login action
@@ -42,7 +51,7 @@ class SecurityController extends BaseController
         }
 
         if ($error) {
-            // @todo log $session->get(SecurityContext::LAST_USERNAME) . " tried to login to the cms but got error: " . $error
+            // @todo log $session->get(SecurityContext::LAST_USERNAME) . " tried to login to the cms but got error: " . $error     
         }
 
         // last username entered by the user
@@ -51,7 +60,7 @@ class SecurityController extends BaseController
         $csrfToken = $this->container->get('form.csrf_provider')->generateCsrfToken('authenticate');
 
         return $this->container->get('templating')->renderResponse(
-            'FOSUserBundle:Security:login.html.' . $this->container->getParameter('fos_user.template.engine'),
+            'SuccessAdminBundle:Security:login.html.' . $this->container->getParameter('fos_user.template.engine'),
             array(
                 'last_username' => $lastUsername,
                 'error'         => $error,
