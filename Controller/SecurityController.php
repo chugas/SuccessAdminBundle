@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\SecurityContext;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session;
-
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * The security controller will handle the login procedure
@@ -19,7 +19,7 @@ class SecurityController extends BaseController
 {
     public function indexAction()
     {
-      $user = $this->get('security.context')->getToken()->getUser();
+      $user = $this->container->get('security.context')->getToken()->getUser();
       if($user){
         return new RedirectResponse($this->container->get('router')->generate('sonata_admin_dashboard'));        
       }else{

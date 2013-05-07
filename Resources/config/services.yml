@@ -38,3 +38,9 @@ services:
           - { name: form.type, alias: success_security_roles }
         arguments: 
             - @sonata.admin.pool
+
+    twig.extension.success:
+        class: Success\AdminBundle\Twig\Extension\UtilExtension
+        arguments: [@service_container, @translator]
+        tags:
+            - { name: twig.extension }
