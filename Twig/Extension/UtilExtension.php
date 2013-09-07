@@ -28,10 +28,13 @@ class UtilExtension extends \Twig_Extension {
         'format_text' => new \Twig_Filter_Method($this, 'formato'),
         'truncate_text' => new \Twig_Filter_Method($this, 'truncate_text'),
         'highlight_text' => new \Twig_Filter_Method($this, 'highlight_text'),
-        'excerpt_text' => new \Twig_Filter_Method($this, 'excerpt_text')
+        'excerpt_text' => new \Twig_Filter_Method($this, 'excerpt_text'),
+        'truncate_words' => new \Twig_Filter_Method($this, 'truncate_words'),
+        'created_ago' => new \Twig_Filter_Method($this, 'createdAgo')
     );
   }
-
+  
+  
   public function getFunctions() {
     return array(
         'web_path' => new \Twig_Function_Method($this, 'path')
@@ -224,5 +227,42 @@ class UtilExtension extends \Twig_Extension {
   function wrap_text($text, $line_width = 80) {
     return preg_replace('/(.{1,' . $line_width . '})(\s+|$)/s', "\\1\n", preg_replace("/\n/", "\n\n", $text));
   }
+  
+  function truncate_words($string, $words = 20) {
+    $text = explode(' ', $string);
+    if ($words > count($text)) {
+      return $string;
+    }
+    return preg_replace('/((\w+\W*){' . ($words - 1) . '}(\w+))(.*)/', '${1}', $string) . '...';
+  }
+  
+  
+  public function createdAgo(\DateTime $dateTime) {
+    $delta = time() - $dateTime->getTimestamp();
+    if ($delta < 0)
+      throw new \Exception("createdAgo is unable to handle dates in the future");
+
+    $duration = "";
+    if ($delta < 60) {
+      // Segundos
+      $time = $delta;
+      $duration = $time . " second" . (($time > 1) ? "s" : "") . " ago";
+    } else if ($delta <= 3600) {
+      // Minutos
+      $time = floor($delta / 60);
+      $duration = $time . " minute" . (($time > 1) ? "s" : "") . " ago";
+    } else if ($delta <= 86400) {
+      // Horas
+      $time = floor($delta / 3600);
+      $duration = $time . " hour" . (($time > 1) ? "s" : "") . " ago";
+    } else {
+      // Días
+      $time = floor($delta / 86400);
+      $duration = $time . " day" . (($time > 1) ? "s" : "") . " ago";
+    }
+
+    return $duration;
+  }
+  
 
 }
