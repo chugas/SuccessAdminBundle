@@ -30,7 +30,8 @@ class UtilExtension extends \Twig_Extension {
         'highlight_text' => new \Twig_Filter_Method($this, 'highlight_text'),
         'excerpt_text' => new \Twig_Filter_Method($this, 'excerpt_text'),
         'truncate_words' => new \Twig_Filter_Method($this, 'truncate_words'),
-        'created_ago' => new \Twig_Filter_Method($this, 'createdAgo')
+        'created_ago' => new \Twig_Filter_Method($this, 'createdAgo'),
+        'format_bytes' => new \Twig_Filter_Method($this, 'format_bytes'),
     );
   }
   
@@ -263,6 +264,16 @@ class UtilExtension extends \Twig_Extension {
 
     return $duration;
   }
+  
+  public function format_bytes($bytes, $si = true)
+  {
+      $unit = $si ? 1000 : 1024;
+      if ($bytes <= $unit) return $bytes . " B";
+      $exp = intval((log($bytes) / log($unit)));
+      $pre = ($si ? "kMGTPE" : "KMGTPE");
+      $pre = $pre[$exp - 1] . ($si ? "" : "i");
+      return sprintf("%.1f %sB", $bytes / pow($unit, $exp), $pre);
+  }  
   
 
 }

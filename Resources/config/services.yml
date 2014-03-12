@@ -22,7 +22,10 @@ services:
             - null
             - %entity.user.class%
             - %controller.user.class%
-            
+        calls:
+            - [ addChild, [ "@success.portal.admin.products" ] ]
+            - [ addChild, [ "@success.portal.admin.services" ] ]
+
     success.admin.group:
         class: %admin.group.class%
         tags:
